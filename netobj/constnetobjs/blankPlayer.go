@@ -4,12 +4,12 @@ import (
 	"math/rand"
 	"strconv"
 
-	"github.com/Mtbcooler/outrun/obj"
+	"github.com/KaoNinjaratzu/outrun/obj"
 
-	"github.com/Mtbcooler/outrun/config/eventconf"
-	"github.com/Mtbcooler/outrun/consts"
-	"github.com/Mtbcooler/outrun/enums"
-	"github.com/Mtbcooler/outrun/netobj"
+	"github.com/KaoNinjaratzu/outrun/config/eventconf"
+	"github.com/KaoNinjaratzu/outrun/consts"
+	"github.com/KaoNinjaratzu/outrun/enums"
+	"github.com/KaoNinjaratzu/outrun/netobj"
 )
 
 var BlankPlayer = func() netobj.Player {

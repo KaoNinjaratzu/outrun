@@ -3,7 +3,7 @@ package obj
 import (
 	"strconv"
 
-	"github.com/Mtbcooler/outrun/enums"
+	"github.com/KaoNinjaratzu/outrun/enums"
 )
 
 type MileageReward struct {

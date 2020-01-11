@@ -6,10 +6,10 @@ import (
 
 	"github.com/jinzhu/now"
 
-	"github.com/Mtbcooler/outrun/config/gameconf"
-	"github.com/Mtbcooler/outrun/enums"
-	"github.com/Mtbcooler/outrun/obj"
-	"github.com/Mtbcooler/outrun/obj/constobjs"
+	"github.com/KaoNinjaratzu/outrun/config/gameconf"
+	"github.com/KaoNinjaratzu/outrun/enums"
+	"github.com/KaoNinjaratzu/outrun/obj"
+	"github.com/KaoNinjaratzu/outrun/obj/constobjs"
 )
 
 /*

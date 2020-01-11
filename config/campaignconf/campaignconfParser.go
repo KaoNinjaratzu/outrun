@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/Mtbcooler/outrun/enums"
+	"github.com/KaoNinjaratzu/outrun/enums"
 )
 
 // defaults

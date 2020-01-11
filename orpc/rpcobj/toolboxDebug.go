@@ -8,15 +8,15 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Mtbcooler/outrun/config/gameconf"
-	"github.com/Mtbcooler/outrun/consts"
-	"github.com/Mtbcooler/outrun/db"
-	"github.com/Mtbcooler/outrun/db/dbaccess"
-	"github.com/Mtbcooler/outrun/logic"
-	"github.com/Mtbcooler/outrun/netobj"
-	"github.com/Mtbcooler/outrun/netobj/constnetobjs"
-	"github.com/Mtbcooler/outrun/obj"
-	"github.com/Mtbcooler/outrun/obj/constobjs"
+	"github.com/KaoNinjaratzu/outrun/config/gameconf"
+	"github.com/KaoNinjaratzu/outrun/consts"
+	"github.com/KaoNinjaratzu/outrun/db"
+	"github.com/KaoNinjaratzu/outrun/db/dbaccess"
+	"github.com/KaoNinjaratzu/outrun/logic"
+	"github.com/KaoNinjaratzu/outrun/netobj"
+	"github.com/KaoNinjaratzu/outrun/netobj/constnetobjs"
+	"github.com/KaoNinjaratzu/outrun/obj"
+	"github.com/KaoNinjaratzu/outrun/obj/constobjs"
 )
 
 func (t *Toolbox) Debug_GetCampaignStatus(uid string, reply *ToolboxReply) error {

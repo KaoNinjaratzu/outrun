@@ -7,7 +7,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/Mtbcooler/outrun/config"
+	"github.com/KaoNinjaratzu/outrun/config"
 )
 
 var db *sql.DB

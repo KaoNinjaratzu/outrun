@@ -5,11 +5,11 @@ import (
 	"math/rand"
 	"strconv"
 
-	"github.com/Mtbcooler/outrun/config"
-	"github.com/Mtbcooler/outrun/consts"
-	"github.com/Mtbcooler/outrun/enums"
-	"github.com/Mtbcooler/outrun/logic/roulette"
-	"github.com/Mtbcooler/outrun/obj"
+	"github.com/KaoNinjaratzu/outrun/config"
+	"github.com/KaoNinjaratzu/outrun/consts"
+	"github.com/KaoNinjaratzu/outrun/enums"
+	"github.com/KaoNinjaratzu/outrun/logic/roulette"
+	"github.com/KaoNinjaratzu/outrun/obj"
 	"github.com/jinzhu/now"
 )
 

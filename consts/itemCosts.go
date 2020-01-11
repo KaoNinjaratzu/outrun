@@ -1,6 +1,6 @@
 package consts
 
-import "github.com/Mtbcooler/outrun/enums"
+import "github.com/KaoNinjaratzu/outrun/enums"
 
 var ItemPrices = map[string]int64{
     enums.ItemIDStrInvincible: 3000,

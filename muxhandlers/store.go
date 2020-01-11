@@ -4,16 +4,16 @@ import (
 	"encoding/json"
 	"strconv"
 
-	"github.com/Mtbcooler/outrun/analytics"
-	"github.com/Mtbcooler/outrun/analytics/factors"
-	"github.com/Mtbcooler/outrun/db"
-	"github.com/Mtbcooler/outrun/emess"
-	"github.com/Mtbcooler/outrun/helper"
-	"github.com/Mtbcooler/outrun/obj"
-	"github.com/Mtbcooler/outrun/obj/constobjs"
-	"github.com/Mtbcooler/outrun/requests"
-	"github.com/Mtbcooler/outrun/responses"
-	"github.com/Mtbcooler/outrun/status"
+	"github.com/KaoNinjaratzu/outrun/analytics"
+	"github.com/KaoNinjaratzu/outrun/analytics/factors"
+	"github.com/KaoNinjaratzu/outrun/db"
+	"github.com/KaoNinjaratzu/outrun/emess"
+	"github.com/KaoNinjaratzu/outrun/helper"
+	"github.com/KaoNinjaratzu/outrun/obj"
+	"github.com/KaoNinjaratzu/outrun/obj/constobjs"
+	"github.com/KaoNinjaratzu/outrun/requests"
+	"github.com/KaoNinjaratzu/outrun/responses"
+	"github.com/KaoNinjaratzu/outrun/status"
 )
 
 func GetRedStarExchangeList(helper *helper.Helper) {

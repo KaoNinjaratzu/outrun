@@ -3,8 +3,8 @@ package constobjs
 import (
     "strconv"
 
-    "github.com/Mtbcooler/outrun/enums"
-    "github.com/Mtbcooler/outrun/obj"
+    "github.com/KaoNinjaratzu/outrun/enums"
+    "github.com/KaoNinjaratzu/outrun/obj"
 )
 
 var DefaultSpinItems = []obj.Item{

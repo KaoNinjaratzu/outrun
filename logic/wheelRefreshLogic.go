@@ -1,12 +1,12 @@
 package logic
 
 import (
-	"github.com/Mtbcooler/outrun/config/campaignconf"
-	"github.com/Mtbcooler/outrun/consts"
-	"github.com/Mtbcooler/outrun/enums"
-	"github.com/Mtbcooler/outrun/logic/conversion"
-	"github.com/Mtbcooler/outrun/netobj"
-	"github.com/Mtbcooler/outrun/obj"
+	"github.com/KaoNinjaratzu/outrun/config/campaignconf"
+	"github.com/KaoNinjaratzu/outrun/consts"
+	"github.com/KaoNinjaratzu/outrun/enums"
+	"github.com/KaoNinjaratzu/outrun/logic/conversion"
+	"github.com/KaoNinjaratzu/outrun/netobj"
+	"github.com/KaoNinjaratzu/outrun/obj"
 )
 
 func WheelRefreshLogic(player netobj.Player, wheel netobj.WheelOptions) netobj.WheelOptions {

@@ -1,6 +1,6 @@
 package responses
 
-import "github.com/Mtbcooler/outrun/responses/responseobjs"
+import "github.com/KaoNinjaratzu/outrun/responses/responseobjs"
 
 type BaseResponse struct {
     responseobjs.BaseInfo

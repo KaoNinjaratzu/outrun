@@ -1,9 +1,9 @@
 package conversion
 
 import (
-	"github.com/Mtbcooler/outrun/enums"
-	"github.com/Mtbcooler/outrun/netobj"
-	"github.com/Mtbcooler/outrun/obj"
+	"github.com/KaoNinjaratzu/outrun/enums"
+	"github.com/KaoNinjaratzu/outrun/netobj"
+	"github.com/KaoNinjaratzu/outrun/obj"
 	"github.com/jinzhu/now"
 )
 

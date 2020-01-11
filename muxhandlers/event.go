@@ -1,13 +1,13 @@
 package muxhandlers
 
 import (
-	"github.com/Mtbcooler/outrun/config/eventconf"
-	"github.com/Mtbcooler/outrun/emess"
-	"github.com/Mtbcooler/outrun/helper"
-	"github.com/Mtbcooler/outrun/logic/conversion"
-	"github.com/Mtbcooler/outrun/obj"
-	"github.com/Mtbcooler/outrun/responses"
-	"github.com/Mtbcooler/outrun/status"
+	"github.com/KaoNinjaratzu/outrun/config/eventconf"
+	"github.com/KaoNinjaratzu/outrun/emess"
+	"github.com/KaoNinjaratzu/outrun/helper"
+	"github.com/KaoNinjaratzu/outrun/logic/conversion"
+	"github.com/KaoNinjaratzu/outrun/obj"
+	"github.com/KaoNinjaratzu/outrun/responses"
+	"github.com/KaoNinjaratzu/outrun/status"
 )
 
 func GetEventList(helper *helper.Helper) {

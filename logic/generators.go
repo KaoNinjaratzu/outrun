@@ -4,7 +4,7 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 
-	"github.com/Mtbcooler/outrun/netobj"
+	"github.com/KaoNinjaratzu/outrun/netobj"
 )
 
 // GenerateLoginPasskey is used by LoginDelta to verify the login passkey sent by the game.

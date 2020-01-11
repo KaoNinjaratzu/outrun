@@ -1,6 +1,6 @@
 package requests
 
-import "github.com/Mtbcooler/outrun/obj"
+import "github.com/KaoNinjaratzu/outrun/obj"
 
 type LoginRequest struct {
 	Version      string `json:"version"`

@@ -5,11 +5,11 @@ import (
 	"log"
 	"time"
 
-	"github.com/Mtbcooler/outrun/analytics/anobj"
-	"github.com/Mtbcooler/outrun/analytics/factors"
-	"github.com/Mtbcooler/outrun/config"
-	"github.com/Mtbcooler/outrun/consts"
-	"github.com/Mtbcooler/outrun/db/dbaccess"
+	"github.com/KaoNinjaratzu/outrun/analytics/anobj"
+	"github.com/KaoNinjaratzu/outrun/analytics/factors"
+	"github.com/KaoNinjaratzu/outrun/config"
+	"github.com/KaoNinjaratzu/outrun/consts"
+	"github.com/KaoNinjaratzu/outrun/db/dbaccess"
 )
 
 func Store(pid string, atype int, value ...int64) (bool, error) {

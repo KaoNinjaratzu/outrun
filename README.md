@@ -43,8 +43,8 @@ Functional:
 3. Set your [GOPATH](https://github.com/golang/go/wiki/SettingGOPATH) environment variable
 4. Open a terminal/command prompt
 5. Use `cd` ([Windows,](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands) [Linux/macOS](https://www.macworld.com/article/2042378/master-the-command-line-navigating-files-and-folders.html)) to navigate to a directory of choice
-6. Run `go get github.com/Mtbcooler/outrun` and wait until the command line returns
-7. Run `go build github.com/Mtbcooler/outrun` and wait until the build is complete
+6. Run `go get github.com/KaoNinjaratzu/outrun` and wait until the command line returns
+7. Run `go build github.com/KaoNinjaratzu/outrun` and wait until the build is complete
 8. Run the produced executable (`outrun.exe` on Windows, `outrun` on Linux/macOS)
 
 Binary releases can be found [in the releases tab.](https://github.com/fluofoxxo/outrun/releases)
