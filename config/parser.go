@@ -29,6 +29,10 @@ var Defaults = map[string]interface{}{
 	"DSilenceGameConfigErrors":     false,
 	"DCampaignConfigFilename":      "campaign_config.json",
 	"DSilenceCampaignConfigErrors": false,
+	"DMySQLServerAddress":          "localhost:3306",
+	"DMySQLUsername":               "root",
+	"DMySQLPassword":               "Qy88%!@8pAaQ",
+	"DMySQLDatabaseName":           "MySQL80",
 }
 
 var CFile ConfigFile
@@ -55,6 +59,10 @@ type ConfigFile struct {
 	SilenceGameConfigErrors     bool   `json:"silenceGameConfigErrors,omitempty"`
 	CampaignConfigFilename      string `json:"campaignConfigFilename,omitempty"`
 	SilenceCampaignConfigErrors bool   `json:"silenceCampaignConfigErrors,omitempty"`
+	MySQLServerAddress          string `json:"mysqlServerAddress,omitempty"`
+	MySQLUsername               string `json:"mysqlUsername,omitempty"`
+	MySQLPassword               string `json:"mysqlPassword,omitempty"`
+	MySQLDatabaseName           string `json:"mysqlDatabaseName,omitempty"`
 }
 
 func Parse(filename string) error {
@@ -80,6 +88,10 @@ func Parse(filename string) error {
 		Defaults["DSilenceGameConfigErrors"].(bool),
 		Defaults["DCampaignConfigFilename"].(string),
 		Defaults["DSilenceCampaignConfigErrors"].(bool),
+		Defaults["DMySQLServerAddress"].(string),
+		Defaults["DMySQLUsername"].(string),
+		Defaults["DMySQLPassword"].(string),
+		Defaults["DMySQLDatabaseName"].(string),
 	}
 	file, err := loadFile(filename)
 	if err != nil {

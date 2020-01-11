@@ -7,9 +7,14 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"os/signal"
 	"strconv"
 	"strings"
+	"syscall"
 	"time"
+
+	"github.com/Mtbcooler/outrun/db/boltdbaccess"
+	"github.com/Mtbcooler/outrun/db/dbaccess"
 
 	"github.com/Mtbcooler/outrun/bgtasks"
 	"github.com/Mtbcooler/outrun/config"
@@ -125,6 +130,8 @@ func main() {
 		log.Printf("[INFO] Campaign config file (%s) loaded\n", config.CFile.CampaignConfigFilename)
 	}
 
+	dbaccess.CheckIfDBSet() // make sure we can connect to the mysql database
+
 	if config.CFile.EnableRPC {
 		orpc.Start()
 	}
@@ -132,6 +139,7 @@ func main() {
 	h := muxobj.Handle
 	router := mux.NewRouter()
 	router.StrictSlash(true)
+	SetupShutdownHandler()
 	LogExecutionTime = config.CFile.DoTimeLogging
 	prefix := config.CFile.EndpointPrefix
 	// Login
@@ -205,4 +213,16 @@ func main() {
 	port := config.CFile.Port
 	log.Printf("Starting server on port %s\n", port)
 	panic(http.ListenAndServe(":"+port, removePrependingSlashes(router)))
+}
+
+func SetupShutdownHandler() {
+	c := make(chan os.Signal, 2)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	go func() {
+		<-c
+		fmt.Println("Shutting down...")
+		dbaccess.CloseDB()
+		boltdbaccess.CloseDB()
+		os.Exit(0)
+	}()
 }

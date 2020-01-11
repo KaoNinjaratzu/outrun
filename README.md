@@ -1,5 +1,7 @@
 # outrun
 
+**THIS BRANCH DOES NOT WORK YET. DO NOT ATTEMPT TO USE IT.**
+
 ### Summary
 
 Outrun is a custom server for Sonic Runners, reverse engineered from the [Sonic Runners Revival](https://sonic.runner.es/) (Now uses Outrun) project.

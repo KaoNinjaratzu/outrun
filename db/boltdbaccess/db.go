@@ -1,23 +1,22 @@
-package dbaccess
+package boltdbaccess
 
 import (
-	"database/sql"
 	"errors"
-	"log"
+	"time"
 
-	_ "github.com/go-sql-driver/mysql"
+	"github.com/Mtbcooler/outrun/db/dbaccess"
 
-	"github.com/Mtbcooler/outrun/config"
+	bolt "go.etcd.io/bbolt"
+
+	"github.com/Mtbcooler/outrun/consts"
 )
 
-var db *sql.DB
+var db *bolt.DB
 var DatabaseIsBusy = false
-
-// TODO: Reimplement all the database access functions here for MySQL.
 
 func Set(bucket, key string, value []byte) error {
 	CheckIfDBSet()
-	/*value = Compress(value) // compress the input first
+	value = dbaccess.Compress(value) // compress the input first
 	err := db.Update(func(tx *bolt.Tx) error {
 		bucket, err := tx.CreateBucketIfNotExists([]byte(bucket))
 		if err != nil {
@@ -29,13 +28,12 @@ func Set(bucket, key string, value []byte) error {
 		}
 		return nil
 	})
-	return err*/
-	return nil
+	return err
 }
 
 func Get(bucket, key string) ([]byte, error) {
 	CheckIfDBSet()
-	/*var value []byte
+	var value []byte
 	err := db.View(func(tx *bolt.Tx) error {
 		b := tx.Bucket([]byte(bucket))
 		value = b.Get([]byte(key))
@@ -44,53 +42,43 @@ func Get(bucket, key string) ([]byte, error) {
 		}
 		return nil
 	})
-	result, derr := Decompress(value) // decompress the result
+	result, derr := dbaccess.Decompress(value) // decompress the result
 	if derr != nil {
 		return result, derr
 	}
-	return result, err*/
-	return []byte{}, nil
+	return result, err
 }
 
 func Delete(bucket, key string) error {
 	CheckIfDBSet()
-	/*return db.View(func(tx *bolt.Tx) error {
+	return db.View(func(tx *bolt.Tx) error {
 		return tx.Bucket([]byte(bucket)).Delete([]byte(key))
-	})*/
-	return nil
+	})
 }
 
 func ForEachKey(bucket string, each func(k, v []byte) error) error {
 	CheckIfDBSet()
-	/*err := db.View(func(tx *sql.Tx) error {
+	err := db.View(func(tx *bolt.Tx) error {
 		b := tx.Bucket([]byte(bucket))
 		err2 := b.ForEach(each)
 		return err2
 	})
-	return err*/
-	return nil
+	return err
 }
 
-func ForEachLogic(each func(tx *sql.Tx) error) error {
+func ForEachLogic(each func(tx *bolt.Tx) error) error {
 	CheckIfDBSet()
-	/*err := db.View(each)
-	return err*/
-	return nil
+	err := db.View(each)
+	return err
 }
 
 func CheckIfDBSet() {
 	if db == nil {
-		log.Println("Connecting to MySQL database...")
-		sqldb, err := sql.Open("mysql", config.CFile.MySQLUsername+":"+config.CFile.MySQLPassword+"@"+config.CFile.MySQLServerAddress+"/"+config.CFile.MySQLDatabaseName)
+		bdb, err := bolt.Open(consts.DBFileName, 0600, &bolt.Options{Timeout: 3 * time.Second})
 		if err != nil {
 			panic(err)
 		}
-		err = sqldb.Ping()
-		if err != nil {
-			panic(err)
-		}
-		db = sqldb
-		log.Println("Successfully connected to database!")
+		db = bdb
 	}
 }
 

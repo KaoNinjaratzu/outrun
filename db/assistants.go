@@ -12,6 +12,7 @@ import (
 	"github.com/Mtbcooler/outrun/config"
 	"github.com/Mtbcooler/outrun/config/eventconf"
 	"github.com/Mtbcooler/outrun/consts"
+	"github.com/Mtbcooler/outrun/db/boltdbaccess"
 	"github.com/Mtbcooler/outrun/db/dbaccess"
 	"github.com/Mtbcooler/outrun/enums"
 	"github.com/Mtbcooler/outrun/netobj"
@@ -118,9 +119,31 @@ func SavePlayer(player netobj.Player) error {
 	return err
 }
 
+func BoltSavePlayer(player netobj.Player) error {
+	j, err := json.Marshal(player)
+	if err != nil {
+		return err
+	}
+	err = boltdbaccess.Set(consts.DBBucketPlayers, player.ID, j)
+	return err
+}
+
 func GetPlayer(uid string) (netobj.Player, error) {
 	var player netobj.Player
 	playerData, err := dbaccess.Get(consts.DBBucketPlayers, uid)
+	if err != nil {
+		return constnetobjs.BlankPlayer, err
+	}
+	err = json.Unmarshal(playerData, &player)
+	if err != nil {
+		return constnetobjs.BlankPlayer, err
+	}
+	return player, nil
+}
+
+func BoltGetPlayer(uid string) (netobj.Player, error) {
+	var player netobj.Player
+	playerData, err := boltdbaccess.Get(consts.DBBucketPlayers, uid)
 	if err != nil {
 		return constnetobjs.BlankPlayer, err
 	}
@@ -144,7 +167,31 @@ func GetPlayerBySessionID(sid string) (netobj.Player, error) {
 	return player, nil
 }
 
+func BoltGetPlayerBySessionID(sid string) (netobj.Player, error) {
+	sidResult, err := boltdbaccess.Get(consts.DBBucketSessionIDs, sid)
+	if err != nil {
+		return constnetobjs.BlankPlayer, err
+	}
+	uid, _ := ParseSIDEntry(sidResult)
+	player, err := GetPlayer(uid)
+	if err != nil {
+		return constnetobjs.BlankPlayer, err
+	}
+	return player, nil
+}
+
 func AssignSessionID(uid string) (string, error) {
+	uidB := []byte(uid)
+	hash := md5.Sum(uidB)
+	hashStr := fmt.Sprintf("%x", hash)
+	sid := fmt.Sprintf(SessionIDSchema, hashStr)
+	value := fmt.Sprintf("%s/%s", uid, time.Now().Unix()) // register the time that the session ID was assigned
+	valueB := []byte(value)
+	err := dbaccess.Set(consts.DBBucketSessionIDs, sid, valueB)
+	return sid, err
+}
+
+func BoltAssignSessionID(uid string) (string, error) {
 	uidB := []byte(uid)
 	hash := md5.Sum(uidB)
 	hashStr := fmt.Sprintf("%x", hash)
@@ -179,12 +226,30 @@ func IsValidSessionID(sid []byte) (bool, error) {
 	return IsValidSessionTime(sessionTime), err
 }
 
+func BoltIsValidSessionID(sid []byte) (bool, error) {
+	sidResult, err := boltdbaccess.Get(consts.DBBucketSessionIDs, string(sid))
+	if err != nil {
+		return false, err
+	}
+	_, sessionTime := ParseSIDEntry(sidResult)
+	return IsValidSessionTime(sessionTime), err
+}
+
 func PurgeSessionID(sid string) error {
 	err := dbaccess.Delete(consts.DBBucketSessionIDs, sid)
 	return err
 }
 
+func BoltPurgeSessionID(sid string) error {
+	err := boltdbaccess.Delete(consts.DBBucketSessionIDs, sid)
+	return err
+}
+
 func PurgeAllExpiredSessionIDs() {
+	// TODO: Implement this!
+}
+
+func BoltPurgeAllExpiredSessionIDs() {
 	keysToPurge := [][]byte{}
 	each := func(tx *bolt.Tx) error {
 		bucket := tx.Bucket([]byte(consts.DBBucketSessionIDs))
@@ -197,8 +262,8 @@ func PurgeAllExpiredSessionIDs() {
 		})
 		return err2
 	}
-	dbaccess.ForEachLogic(each) // do the logic above
+	boltdbaccess.ForEachLogic(each) // do the logic above
 	for _, key := range keysToPurge {
-		PurgeSessionID(string(key))
+		BoltPurgeSessionID(string(key))
 	}
 }
